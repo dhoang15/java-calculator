@@ -6,7 +6,6 @@ public class CaculatorModel {
     private  double result ;
     private String mathOperation;
     public CaculatorModel(){
-        this.result = 0;
     }
     public CaculatorModel(double firstValue,double secondValue,double result,String mathOperation){
         this.firstValue = firstValue;
