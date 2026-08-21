@@ -4,12 +4,10 @@
 
 ## 1. Yêu cầu môi trường
 
+- Git để tải project về máy.
 - Java Development Kit (JDK) 8 trở lên.
 - Khuyến nghị dùng JDK 17 trở lên.
 - Windows PowerShell, Command Prompt hoặc terminal tương đương.
-- IntelliJ IDEA có thể mở trực tiếp file `MyCaculator.iml`.
-
-Tên package và class hiện tại dùng cách viết `Caculator` thay vì `Calculator`. README giữ nguyên tên này để khớp với mã nguồn.
 
 ## 2. Chức năng
 
@@ -34,13 +32,37 @@ Tên package và class hiện tại dùng cách viết `Caculator` thay vì `Cal
 
 Ví dụ: nhấn `4`, `+`, `2`, `=` sẽ hiển thị `6.0`.
 
-## 4. Biên dịch và chạy bằng terminal
+## 4. Clone, biên dịch và chạy project
 
-Mở terminal tại thư mục gốc của dự án:
+### Bước 1: Clone project
+
+Mở PowerShell hoặc Command Prompt, chuyển đến thư mục bạn muốn lưu project rồi chạy:
 
 ```powershell
-cd E:\simplecalculator
+git clone https://github.com/dhoang15/java-calculator.git
+cd java-calculator
 ```
+
+Nếu đã clone project trước đó và muốn lấy phiên bản mới nhất:
+
+```powershell
+cd java-calculator
+git pull origin main
+```
+
+### Bước 2: Kiểm tra Git và Java
+
+```powershell
+git --version
+java -version
+javac -version
+```
+
+Nếu các lệnh trên không chạy được, hãy cài Git và JDK, sau đó mở lại terminal. Biến môi trường `PATH` phải chứa thư mục `bin` của JDK để dùng được `java` và `javac`.
+
+### Bước 3: Biên dịch mã nguồn
+
+Đang ở thư mục gốc `java-calculator`, chạy lệnh sau trong PowerShell:
 
 Tạo thư mục chứa file `.class` và biên dịch toàn bộ mã nguồn:
 
@@ -49,13 +71,17 @@ New-Item -ItemType Directory -Force out
 javac -d out (Get-ChildItem src -Recurse -Filter *.java).FullName
 ```
 
-Chạy giao diện máy tính:
+Lệnh này biên dịch tất cả file `.java` trong `src` và đặt file `.class` vào thư mục `out`.
+
+### Bước 4: Chạy giao diện máy tính
 
 ```powershell
 java -cp out view.CaculatorView
 ```
 
-Chạy chương trình kiểm thử thủ công:
+Sau khi chạy thành công, cửa sổ máy tính Swing sẽ xuất hiện. Nhấn `Ctrl+C` trong terminal để dừng chương trình nếu cần.
+
+### Bước 5: Chạy kiểm thử thủ công
 
 ```powershell
 java -cp out test.test
@@ -71,6 +97,21 @@ Kết quả mong đợi của phần kiểm thử model:
 ```
 
 Chương trình kiểm thử cũng mở giao diện Swing ở cuối hàm `main`, vì vậy cửa sổ máy tính sẽ xuất hiện sau khi các kết quả trên được in ra.
+
+### Nếu dùng Command Prompt thay vì PowerShell
+
+Lệnh `Get-ChildItem` là cú pháp PowerShell. Trong Command Prompt, có thể biên dịch bằng lệnh sau:
+
+```cmd
+if not exist out mkdir out
+javac -d out src\Controller\CaculatorListener.java src\model\CaculatorModel.java src\model\EvalException.java src\test\test.java src\view\CaculatorView.java
+```
+
+Sau đó chạy ứng dụng bằng lệnh:
+
+```cmd
+java -cp out view.CaculatorView
+```
 
 ## 5. Cấu trúc thư mục
 
