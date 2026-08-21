@@ -3,8 +3,8 @@ package view;
 import javax.swing.*;
 import java.awt.*;
 
-public class MyCaculator extends JFrame {
-    public MyCaculator(){
+public class CaculatorView extends JFrame {
+    public CaculatorView(){
         this.setTitle("Caculator");
         this.setSize(300,300);
         this.setLocationRelativeTo(null);
@@ -54,7 +54,7 @@ public class MyCaculator extends JFrame {
     public static void main(String[] args){
         try{
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-            new MyCaculator();
+            new CaculatorView();
         }catch (Exception e){
             e.printStackTrace();
         }
