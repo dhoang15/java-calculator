@@ -1,3 +1,5 @@
+package view;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -50,6 +52,11 @@ public class MyCaculator extends JFrame {
         this.setVisible(true);
     }
     public static void main(String[] args){
-        new MyCaculator();
+        try{
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            new MyCaculator();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }
