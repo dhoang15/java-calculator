@@ -1,7 +1,7 @@
 package view;
 
-import javax.swing.*;
 import java.awt.*;
+import javax.swing.*;
 
 public class CaculatorView extends JFrame {
     public CaculatorView(){
