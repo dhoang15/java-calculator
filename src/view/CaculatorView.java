@@ -1,62 +1,77 @@
 package view;
 
+import Controller.CaculatorListener;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import javax.swing.*;
+import model.CaculatorModel;
 
 public class CaculatorView extends JFrame {
-    public CaculatorView(){
-        this.setTitle("Caculator");
-        this.setSize(300,300);
+    private CaculatorModel caculatorModel;
+    private JTextField displayField; 
+
+    public CaculatorView() {
+        this.caculatorModel = new CaculatorModel();
+        this.init();
+    }
+
+    public void init() {
+        this.setTitle("Calculator");
+        this.setSize(300, 350);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        JTextField jtextfeild = new JTextField(50);
-        JPanel jpanel_head = new JPanel();
-        BorderLayout f1 = new BorderLayout();
-        jpanel_head.setLayout(f1);
-        jpanel_head.add(jtextfeild,BorderLayout.CENTER);
-        JButton jbutton = new JButton("0");
-        JButton jbutton1 = new JButton("1");
-        JButton jbutton2 = new JButton("2");
-        JButton jbutton3 = new JButton("3");
-        JButton jbutton4 = new JButton("4");
-        JButton jbutton5 = new JButton("5");
-        JButton jbutton6 = new JButton("6");
-        JButton jbutton7 = new JButton("7");
-        JButton jbutton8 = new JButton("8");
-        JButton jbutton9 = new JButton("9");
-        JButton jbutton_cong = new JButton("+");
-        JButton jbutton_tru = new JButton("-");
-        JButton jbutton_nhan = new JButton("*");
-        JButton jbutton_chia = new JButton("/");
-        JButton jbutton_bang = new JButton("=");
-        JPanel button = new JPanel();
-        button.setLayout(new GridLayout(5,3));
-        button.add(jbutton);
-        button.add(jbutton1);
-        button.add(jbutton2);
-        button.add(jbutton3);
-        button.add(jbutton4);
-        button.add(jbutton5);
-        button.add(jbutton6);
-        button.add(jbutton7);
-        button.add(jbutton8);
-        button.add(jbutton9);
-        button.add(jbutton_cong);
-        button.add(jbutton_tru);
-        button.add(jbutton_nhan);
-        button.add(jbutton_chia);
-        button.add(jbutton_bang);
         this.setLayout(new BorderLayout());
-        this.add(jpanel_head,BorderLayout.NORTH);
-        this.add(button,BorderLayout.CENTER);
+        ActionListener ac = new CaculatorListener(this);
+        displayField = new JTextField();
+        displayField.setFont(new Font("Arial", Font.BOLD, 20));
+        displayField.setEditable(false);
+        displayField.setHorizontalAlignment(JTextField.RIGHT); 
+        JPanel panelNorth = new JPanel(new BorderLayout());
+        panelNorth.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        panelNorth.add(displayField, BorderLayout.CENTER);
+        this.add(panelNorth, BorderLayout.NORTH);
+        JPanel panelButtons = new JPanel();
+        panelButtons.setLayout(new GridLayout(4, 4, 5, 5)); 
+        // Tạo các nút bấm
+        JButton btn7 = new JButton("7");
+        btn7.addActionListener(ac);
+        JButton btn8 = new JButton("8");
+        btn8.addActionListener(ac);
+        JButton btn9 = new JButton("9");
+        btn9.addActionListener(ac);
+        JButton btnDiv = new JButton("/");
+        btnDiv.addActionListener(ac);
+        JButton btn4 = new JButton("4");
+        btn4.addActionListener(ac);
+        JButton btn5 = new JButton("5");
+        btn5.addActionListener(ac);
+        JButton btn6 = new JButton("6");
+        btn6.addActionListener(ac);
+        JButton btnMul = new JButton("*");
+        btnMul.addActionListener(ac);
+        JButton btn1 = new JButton("1");
+        btn1.addActionListener(ac);
+        JButton btn2 = new JButton("2");
+        btn2.addActionListener(ac);
+        JButton btn3 = new JButton("3");
+        btn3.addActionListener(ac);
+        JButton btnSub = new JButton("-");
+        btnSub.addActionListener(ac);
+        JButton btn0 = new JButton("0");
+        btn0.addActionListener(ac);
+        JButton btnC = new JButton("C");
+        btnC.addActionListener(ac);
+        JButton btnEquals = new JButton("=");
+        btnEquals.addActionListener(ac);
+        JButton btnSum = new JButton("+");
+        btnSum.addActionListener(ac);
+
+        panelButtons.add(btn7); panelButtons.add(btn8); panelButtons.add(btn9); panelButtons.add(btnDiv);
+        panelButtons.add(btn4); panelButtons.add(btn5); panelButtons.add(btn6); panelButtons.add(btnMul);
+        panelButtons.add(btn1); panelButtons.add(btn2); panelButtons.add(btn3); panelButtons.add(btnSub);
+        panelButtons.add(btn0); panelButtons.add(btnC); panelButtons.add(btnEquals); panelButtons.add(btnSum);
+        panelButtons.setBorder(BorderFactory.createEmptyBorder(0, 10, 10, 10));
+        this.add(panelButtons, BorderLayout.CENTER);
         this.setVisible(true);
-    }
-    public static void main(String[] args){
-        try{
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-            new CaculatorView();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
     }
 }
